@@ -1,0 +1,9 @@
+# pycache
+*.pyc
+*.pyo
+
+# manim build files
+*media/
+
+# java
+*.class
