@@ -75,4 +75,4 @@ class Oxidation(Scene):
                                       conclusion_cell.animate().shift(LEFT * 15)],
                             run_time=constants.LONG_ANIMATION_TIME * 2)
 
-        self.wait(constants.SHORT_DWELL_TIME)
+        self.wait(constants.SHORT_DWELL_TIME / 4)

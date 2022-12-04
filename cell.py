@@ -4,7 +4,7 @@ import constants
 class Cell(Scene):
     def __init__(self):
         super().__init__()
-        self.anode = Rectangle(GRAY_B, 6, 2, fill_opacity=0.7).move_to((-4, 0, 0))
+        self.anode = Rectangle(GRAY_A, 6, 2, fill_opacity=0.7).move_to((-4, 0, 0))
         self.cathode = Rectangle(GOLD_E, 6, 2, fill_opacity=0.7).move_to((4, 0, 0))
         self.electrolyte = Rectangle(BLUE, 7, 6, fill_opacity=0.5)
 
@@ -18,4 +18,3 @@ class Cell(Scene):
         constants.bulk_play(self, Create(self.anode), Create(self.cathode), Create(self.electrolyte), run_time=constants.SHORT_ANIMATION_TIME)
         constants.bulk_play(self, [Create(self.anode_text), Create(self.cathode_text)], run_time=constants.SHORT_ANIMATION_TIME)
         self.wait(constants.LONG_DWELL_TIME)
-
