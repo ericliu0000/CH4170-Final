@@ -36,6 +36,7 @@ class Reduction(Scene):
         e_group2 = e_group.copy()
         e_group, e_group2 = e_group.shift(UP + LEFT), e_group2.shift(UP + RIGHT)
 
+        red_text = MarkupText("Reduction", font_size=36, font="IBM Plex Mono", color=WHITE).shift(UP * 2)
         red_rxn = MarkupText("S + 2e<sup>-</sup> → S<sup>2-</sup>", font_size=36, font="IBM Plex Mono", color=WHITE).shift(DOWN * 2)
 
         # Transform cathode to metal
@@ -61,11 +62,11 @@ class Reduction(Scene):
                             run_time=constants.LONG_ANIMATION_TIME)
         
         self.remove(e_group, e_group2)
-        self.play(Create(red_rxn))
+        self.play(Create(red_text), Create(red_rxn))
         self.wait(constants.LONG_DWELL_TIME)
 
         # Group everything and move it away, bring back the cell
-        all_group = Group(s_group, red_rxn)
+        all_group = Group(s_group, red_text, red_rxn)
         conclusion_cell = Cell().cell_group.shift(LEFT * 15)
         constants.bulk_play(self, [all_group.animate().shift(RIGHT * 15),
                                       conclusion_cell.animate().shift(RIGHT * 15)],

@@ -35,6 +35,7 @@ class Oxidation(Scene):
         e_group = Group(e, e_text)
         e_group2 = e_group.copy()
 
+        ox_text = MarkupText("Oxidation", font_size=36, font="IBM Plex Mono", color=WHITE).shift(UP * 2)
         ox_rxn = MarkupText("2Li → 2Li<sup>+</sup> + 2e<sup>-</sup>", font_size=36, font="IBM Plex Mono", color=WHITE).shift(DOWN * 2)
 
         # Transform anode to metal
@@ -59,17 +60,17 @@ class Oxidation(Scene):
 
         self.wait(constants.SHORT_DWELL_TIME)
         li_group2 = li_group.copy()
-        constants.bulk_play(self, [li_group.animate().shift(LEFT),
-                                   li_group2.animate().shift(RIGHT),
-                                   e_group.animate().shift(LEFT),
-                                   e_group2.animate().shift(RIGHT + UP)],
+        constants.bulk_play(self, [li_group.animate().shift(LEFT + DOWN * 0.25),
+                                   li_group2.animate().shift(RIGHT + DOWN * 0.25),
+                                   e_group.animate().shift(LEFT + DOWN * 0.25),
+                                   e_group2.animate().shift(RIGHT + UP * 0.75)],
                             run_time=constants.SHORT_ANIMATION_TIME)
 
-        self.play(Create(ox_rxn))
+        self.play(Create(ox_text), Create(ox_rxn))
         self.wait(constants.LONG_DWELL_TIME)
 
         # Group everything and move it away, bring back the cell
-        all_group = Group(li_group, li_group2, e_group, e_group2, ox_rxn)
+        all_group = Group(li_group, li_group2, e_group, e_group2, ox_text, ox_rxn)
         conclusion_cell = Cell().cell_group.shift(RIGHT * 15)
         constants.bulk_play(self, [all_group.animate().shift(LEFT * 15),
                                       conclusion_cell.animate().shift(LEFT * 15)],
