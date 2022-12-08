@@ -1,9 +1,9 @@
 from manim import *
 
 # Text configuration constants
-TEXT_COLOR = "#edcaeb"
+TEXT_COLOR = "#ffffff"
 TOP_TEXT_BUFFER = 0.5
-BETWEEN_TEXT_BUFFER = 0.25
+BETWEEN_TEXT_BUFFER = 0.15
 
 # Animation time scale constants
 FAST_ANIMATION_TIME = 0.2
@@ -37,7 +37,7 @@ MEMBERS_GRADIENT = "from=\"PINK\" to=\"GOLD_E\""
 
 
 # Utility
-def text_generator(text, ref):
+def text_generator(text, ref, **kwargs):
     lines = text.split("\n")
     groups = []
 
@@ -49,17 +49,16 @@ def text_generator(text, ref):
             groups.append(temp)
             temp = []
         else:
-            obj = MarkupText(line, color=TEXT_COLOR)
+            obj = MarkupText(line, **kwargs, color=TEXT_COLOR)
 
             if len(temp) == 0:
-                obj.next_to(ref, DOWN, buff=TOP_TEXT_BUFFER)
+                obj.move_to(ref)
             else:
                 obj.next_to(temp[-1], DOWN, buff=BETWEEN_TEXT_BUFFER)
 
             temp.append(obj)
 
     groups.append(temp)
-
     return groups
 
 
